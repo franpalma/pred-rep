@@ -1,0 +1,63 @@
+Call:
+glm(formula = newdata$Result ~ newdata$CMC + newdata$ST + newdata$MC + 
+    newdata$TM, family = binomial(link = "logit"), data = newdata)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.0232  -0.3991  -0.3844  -0.2582   3.9070  
+
+Coefficients: (1 not defined because of singularities)
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -2.446e+00  1.085e-01 -22.542  < 2e-16 ***
+newdata$CMC -1.623e+02  2.672e+01  -6.073 1.25e-09 ***
+newdata$ST  -3.641e-02  1.464e-02  -2.488   0.0129 *  
+newdata$MC   1.066e-03  1.447e-04   7.371 1.69e-13 ***
+newdata$TM          NA         NA      NA       NA    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1766.4  on 3403  degrees of freedom
+Residual deviance: 1648.5  on 3400  degrees of freedom
+AIC: 1656.5
+
+Number of Fisher Scoring iterations: 8
+
+
+***
+ST  is  not statistically significant. 
+
+As for the statistically significant variables, MC  has the lowest p-value suggesting a strong association of the MC of the test case with the probability of being failed.  
+
+The positive coefficient for this MC predictor suggests that all other variables being equal, the test case is more likely to have passed.
+
+****
+
+After, running the anova() function on the model to analyze the table of deviance.
+
+Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: newdata$Result
+
+Terms added sequentially (first to last)
+
+
+            Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
+NULL                         3403     1766.5              
+newdata$CMC  1   49.850      3402     1716.6 1.659e-12 ***
+newdata$MC   1   55.080      3401     1661.5 1.157e-13 ***
+newdata$ST   1   12.971      3400     1648.5 0.0003163 ***
+newdata$TM   0    0.000      3400     1648.5              
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+The difference between the null deviance and the residual deviance shows how our model is doing against the null model (a model with only the intercept). The wider this gap, the better. Analyzing the table we can see the drop in deviance when adding each variable one at a time. Again, adding CMC, MC, ST significantly reduces the residual deviance. A large p-value here indicates that the model without the variable explains more or less the same amount of variation. Ultimately what you would like to see is a significant drop in deviance and the AIC.
+
+
+  llh       llhNull            G2      McFadden          r2ML          r2CU 
+-824.27247678 -883.22306585  117.90117814    0.06674485    0.03404311    0.08408935 
+
+In the steps above, we briefly evaluated the fitting of the model.

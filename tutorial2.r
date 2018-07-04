@@ -2,9 +2,6 @@ setwd('D:/pred-rep/tanzeem_noor-promise17_data')
 
 data.raw <- read.csv('Closure-Compiler Metrics Raw_Data.csv',header=T,na.strings=c(""))
 
-data.raw$ST <- scale(data.raw$ST)
-
-data.raw$MC <- scale(data.raw$MC)
 
 data <- subset(data.raw,select=c(1, 4, 6, 7, 11, 12))
 

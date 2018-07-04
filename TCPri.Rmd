@@ -1,0 +1,92 @@
+---
+title: "Untitled"
+author: "Tamer"
+date: '2018-07-04'
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading data
+
+```{r}
+#getwd()
+metrics.ranks <- read.csv('RQ1_Closure-Compiler.csv',header=T,na.strings=c(""))
+data.raw <- read.csv('Closure-Compiler Metrics Raw_Data.csv',header=T,na.strings=c(""))
+failing.tcs <- read.csv('FailingTests.csv',header=T,na.strings=c(""))
+
+str(data.raw)
+str(metrics.raw)
+str(failing.tcs)
+```
+
+##Function declaratoin for sorting df according to metric x
+```{r}
+sorting.func <- function(df, x)
+  {
+    return(df[order(df$Version, -x),])
+  }
+```
+
+#Sorting data according to ST metric and assigning indeces
+```{r}
+data.raw <- sorting.func(data.raw, data.raw$ST)
+data.raw$STindex <- NA
+for (i in c(1:133))
+  {
+    df.cache <- data.raw %>% filter(data.raw$Version == as.character(i))
+    data.raw$STindex[which(data.raw$Version == i)] <- as.numeric(rownames(df.cache))/nrow(df.cache)
+    data.raw$STindex[which(data.raw$Result == 0)] <- NA
+  }
+```
+
+#Sorting data according to MC metric and assigning indeces
+```{r}
+data.raw <- sorting.func(data.raw, data.raw$MC)
+data.raw$MCindex <- NA
+for (i in c(1:133))
+  {
+    df.cache <- data.raw %>% filter(data.raw$Version == as.character(i))
+    data.raw$MCindex[which(data.raw$Version == i)] <- as.numeric(rownames(df.cache))/nrow(df.cache)
+    data.raw$MCindex[which(data.raw$Result == 0)] <- NA
+  }
+```
+
+
+#Sorting data according to CMC metric and assigning indeces
+```{r}
+data.raw <- sorting.func(data.raw, data.raw$CMC)
+data.raw$CMCindex <- NA
+for (i in c(1:133))
+  {
+    df.cache <- data.raw %>% filter(data.raw$Version == as.character(i))
+    data.raw$CMCindex[which(data.raw$Version == i)] <- as.numeric(rownames(df.cache))/nrow(df.cache)
+    data.raw$CMCindex[which(data.raw$Result == 0)] <- NA
+  }
+```
+
+
+
+#Sorting data according to TM metric and assigning indeces
+```{r}
+data.raw <- sorting.func(data.raw, data.raw$TM)
+data.raw$TMindex <- NA
+for (i in c(1:133))
+  {
+    df.cache <- data.raw %>% filter(data.raw$Version == as.character(i))
+    data.raw$TMindex[which(data.raw$Version == i)] <- as.numeric(rownames(df.cache))/nrow(df.cache)
+    
+    data.raw$TMindex[which(data.raw$Result == 0)] <- NA
+  }
+```
+
+
+```{r}
+write.csv(data.raw, "newdataraw.csv")
+```
+
+

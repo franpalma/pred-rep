@@ -11,27 +11,27 @@ rq1_joda_time <- read.csv("RQ1_Joda-Time.csv", header = TRUE)
 
 pdf(file='rq1_closure_compiler.pdf')
 boxplot(rq1_closure_compiler$rank_CMC, rq1_closure_compiler$rank_ST, rq1_closure_compiler$rank_MC, rq1_closure_compiler$rank_Model,
-        names = c("CMC", "ST", "MC", "Model"))
+        names = c("CMC", "ST", "MC", "Model"), ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 pdf(file='rq1_commons_lang.pdf')
 boxplot(rq1_commons_lang$rank_TM, rq1_commons_lang$rank_CMC, rq1_commons_lang$rank_ST, rq1_commons_lang$rank_MC, rq1_commons_lang$rank_Model,
-        names = c("TM", "CMC", "ST", "MC", "Model"))
+        names = c("TM", "CMC", "ST", "MC", "Model"), ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 pdf(file='rq1_commons_math.pdf')
 boxplot(rq1_commons_math$rank_TM, rq1_commons_math$rank_CMC, rq1_commons_math$rank_ST, rq1_commons_math$rank_MC, rq1_commons_math$rank_Model,
-        names = c("TM", "CMC", "ST", "MC", "Model"))
+        names = c("TM", "CMC", "ST", "MC", "Model"), ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 pdf(file='rq1_jfreechart.pdf')
 boxplot(rq1_jfreechart$rank_CMC, rq1_jfreechart$rank_ST, rq1_jfreechart$rank_MC, rq1_jfreechart$rank_Model,
-        names = c("CMC", "ST", "MC", "Model"))
+        names = c("CMC", "ST", "MC", "Model"), ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 pdf(file='rq1_joda_time.pdf')
 boxplot(rq1_joda_time$rank_CMC, rq1_joda_time$rank_ST, rq1_joda_time$rank_MC, rq1_joda_time$rank_Model,
-        names = c("CMC", "ST", "MC", "Model"))
+        names = c("CMC", "ST", "MC", "Model"), ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 #FIg. 3
@@ -86,7 +86,7 @@ for(i in c(1:length(rq1_treatment_model_jfreechart)))
   CMC5[i] <- (VD.A(rq1_control_cmc_jfreechart[i], rq1_treatment_model_jfreechart[i])$estimate)
 
 pdf(file='rq1_Model_CMC.pdf')
-boxplot(CMC5, CMC4, CMC3, CMC2, CMC1, names = c("JFreeChart", "Joda Time", "Commons Lang", "Commons Math", "Closure Compile"), cex.lab=.65, cex.axis=.65)
+boxplot(CMC5, CMC4, CMC3, CMC2, CMC1, names = c("JFreeChart", "Joda Time", "Commons Lang", "Commons Math", "Closure Compile"), cex.lab=.95, cex.axis=.95, ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 ST1 <- NULL
@@ -110,7 +110,7 @@ for(i in c(1:length(rq1_treatment_model_jfreechart)))
   ST5[i] <- (VD.A(rq1_control_st_jfreechart[i], rq1_treatment_model_jfreechart[i])$estimate)
 
 pdf(file='rq1_Model_ST.pdf')
-boxplot(ST5, ST4, ST3, ST2, ST1, names = c("JFreeChart", "JodaTime", "CommonsLang", "CommonsMath", "ClosureCompile"), cex.lab=.65, cex.axis=.65)
+boxplot(ST5, ST4, ST3, ST2, ST1, names = c("JFreeChart", "JodaTime", "CommonsLang", "CommonsMath", "ClosureCompile"), ylab="% TCs to be executed for finding the first failing TC", cex.lab=.95, cex.axis=.95)
 dev.off()
 
 MC1 <- NULL
@@ -134,7 +134,7 @@ for(i in c(1:length(rq1_treatment_model_jfreechart)))
   MC5[i] <- (VD.A(rq1_control_mc_jfreechart[i], rq1_treatment_model_jfreechart[i])$estimate)
 
 pdf(file='rq1_Model_MC.pdf')
-boxplot(MC5, MC4, MC3, MC2, MC1, names = c("JFreeChart", "JodaTime", "CommonsLang", "CommonsMath", "ClosureCompile"), cex.lab=.65, cex.axis=.65)
+boxplot(MC5, MC4, MC3, MC2, MC1, names = c("JFreeChart", "JodaTime", "CommonsLang", "CommonsMath", "ClosureCompile"), ylab="% TCs to be executed for finding the first failing TC", cex.lab=.95, cex.axis=.95)
 dev.off()
 
 
@@ -148,7 +148,7 @@ for(i in c(1:length(rq1_treatment_model_commons_lang)))
 
 
 pdf(file='rq1_Model_TM.pdf')
-boxplot(TM3, TM2, names = c("CommonsLang", "CommonsMath"), cex.lab=.65, cex.axis=.65)
+boxplot(TM3, TM2, names = c("CommonsLang", "CommonsMath"), ylab="% TCs to be executed for finding the first failing TC", cex.lab=.95, cex.axis=.95)
 dev.off()
 
 #load data
@@ -163,27 +163,27 @@ rq2_joda_time <- read.csv("RQ2_Joda-Time.csv", header = TRUE)
 
 pdf(file='rq2_closure_compiler.pdf')
 boxplot(rq2_closure_compiler$rank_Traditional_Model, rq2_closure_compiler$rank_Proposed_Model,
-        names = c("Traditional Model", "Proposed Model"))
+        names = c("Traditional Model", "Proposed Model"), ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 pdf(file='rq2_commons_lang.pdf')
 boxplot(rq2_commons_lang$rank_Traditional_Model, rq2_commons_lang$rank_Proposed_Model,
-        names = c("Traditional Model", "Proposed Model"))
+        names = c("Traditional Model", "Proposed Model"), ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 pdf(file='rq2_commons_math.pdf')
 boxplot(rq2_commons_math$rank_Traditional_Model, rq2_commons_math$rank_Proposed_Model,
-        names = c("Traditional Model", "Proposed Model"))
+        names = c("Traditional Model", "Proposed Model"), ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 pdf(file='rq2_jfreechart.pdf')
 boxplot(rq2_jfreechart$rank_Traditional_Model, rq2_jfreechart$rank_Proposed_Model,
-        names = c("Traditional Model", "Proposed Model"))
+        names = c("Traditional Model", "Proposed Model"), ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 pdf(file='rq2_joda_time.pdf')
 boxplot(rq2_joda_time$rank_Traditional_Model, rq2_joda_time$rank_Proposed_Model,
-        names = c("Traditional Model", "Proposed Model"))
+        names = c("Traditional Model", "Proposed Model"), ylab="% TCs to be executed for finding the first failing TC")
 dev.off()
 
 #Fig. 5
@@ -221,5 +221,6 @@ for(i in c(1:length(rq2_treatment_model_jfreechart)))
   PM_TM_5[i] <- (VD.A(rq2_control_model_jfreechart[i], rq2_treatment_model_jfreechart[i])$estimate)
 
 pdf(file='rq2_Model_Traditional.pdf')
-boxplot(PM_TM_5, PM_TM_4, PM_TM_3, PM_TM_2, PM_TM_1, names = c("JFreeChart", "Joda Time", "Commons Lang", "Commons Math", "Closure Compile"), cex.lab=.65, cex.axis=.65)
+boxplot(PM_TM_5, PM_TM_4, PM_TM_3, PM_TM_2, PM_TM_1, names = c("JFreeChart", "Joda Time", "Commons Lang", "Commons Math", "Closure Compile"), ylab="% TCs to be executed for finding the first failing TC", cex.lab=.95, cex.axis=.95)
 dev.off()
+

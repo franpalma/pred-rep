@@ -33,7 +33,7 @@ dt6 <- my_similarity_predict_results_compiler$output_rank_model_compiler_rankInd
 #pdf("comparison_compiler.pdf")
 boxplot(dt1, dt2, dt3, dt4, dt5, dt6, 
         names=c("Origin_Traditional","Rep_Traditional","Traditional2","Origin_Similarity","Rep_Similarity","Similarity2"), 
-        ylab="% TCs to be executed for finding the first failing TC", 
+        ylab="% TCs to be executed to find the first failing TC", 
         col="white", cex.lab=.95, cex.axis=.95, srt = 45)
 dev.flush()
 
@@ -48,7 +48,7 @@ dt6 <- my_similarity_predict_results_jfreechart$output_rank_model_jfreechart_ran
 #pdf("comparison_jfreechart.pdf")
 boxplot(dt1, dt2, dt3, dt4, dt5, dt6, 
         names=c("Origin_Traditional","Rep_Traditional","Traditional2","Origin_Similarity","Rep_Similarity","Similarity2"), 
-        ylab="% TCs to be executed for finding the first failing TC", 
+        ylab="% TCs to be executed to find the first failing TC", 
         col="white", cex.lab=.95, cex.axis=.95, srt = 45)
 dev.flush()
 
@@ -63,7 +63,7 @@ dt6 <- my_similarity_predict_results_lang$output_rank_model_lang_rankIndex_sim_m
 #pdf("comparison_lang.pdf")
 boxplot(dt1, dt2, dt3, dt4, dt5, dt6, 
         names=c("Origin_Traditional","Rep_Traditional","Traditional2","Origin_Similarity","Rep_Similarity","Similarity2"), 
-        ylab="% TCs to be executed for finding the first failing TC", 
+        ylab="% TCs to be executed to find the first failing TC", 
         col="white", cex.lab=.95, cex.axis=.95, srt = 45)
 dev.flush()
 
@@ -79,7 +79,7 @@ dt6 <- my_similarity_predict_results_math$output_rank_model_math_rankIndex_sim_m
 #pdf("comparison_math.pdf")
 boxplot(dt1, dt2, dt3, dt4, dt5, dt6, 
         names=c("Origin_Traditional","Rep_Traditional","Traditional2","Origin_Similarity","Rep_Similarity","Similarity2"), 
-        ylab="% TCs to be executed for finding the first failing TC", 
+        ylab="% TCs to be executed to find the first failing TC", 
         col="white", cex.lab=.95, cex.axis=.95, srt = 45)
 dev.flush()
 
@@ -95,12 +95,35 @@ dt6 <- my_similarity_predict_results_time$output_rank_model_time_rankIndex_sim_m
 #pdf("comparison_time.pdf")
 boxplot(dt1, dt2, dt3, dt4, dt5, dt6, 
         names=c("Origin_Traditional","Rep_Traditional","Traditional2","Origin_Similarity","Rep_Similarity","Similarity2"), 
-        ylab="% TCs to be executed for finding the first failing TC", 
+        ylab="% TCs to be executed to find the first failing TC", 
         col="white", cex.lab=.95, cex.axis=.95, srt = 45)
 dev.flush()
 
 library(effsize)
 
+#compare traditional model with 10 metrics vs original traditional with 4 metrics
+
 a <- my_similarity_predict_results_compiler$output_rank_model_compiler_rankIndex_sim_mod
-b <- their_traditional_predict_results_compiler$rank_Model
-wilcox.test(a, b, conf.level = 0.95, paired = TRUE, exact = FALSE)
+b <- their_similarity_predict_results_compiler$rank_Proposed_Model
+wilcox.test(a, b, conf.level = 0.95)
+VD.A(a ~ b)
+
+a <- my_traditional_predict_results_lang$output_rank_model_lang_rankIndex_mod
+b <- their_traditional_predict_results_lang$rank_Model
+wilcox.test(a, b, conf.level = 0.95)
+VD.A(a ~ b)
+
+a <- my_traditional_predict_results_math$output_rank_model_math_rankIndex_mod
+b <- their_traditional_predict_results_math$rank_Model
+wilcox.test(a, b, conf.level = 0.95)
+VD.A(a ~ b)
+
+a <- my_traditional_predict_results_jfreechart$output_rank_model_jfreechart_rankIndex_mod
+b <- their_traditional_predict_results_jfreechart$rank_Model
+wilcox.test(a, b, conf.level = 0.95)
+VD.A(a ~ b)
+
+a <- my_traditional_predict_results_time$output_rank_model_time_rankIndex_mod
+b <- their_traditional_predict_results_time$rank_Model
+wilcox.test(a, b, conf.level = 0.95)
+VD.A(a ~ b)

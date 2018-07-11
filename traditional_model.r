@@ -102,7 +102,7 @@ train_data <- data.raw.compiler
 
 fit <- glm(train_data$Result~train_data$CMC+train_data$MC+train_data$ST,data=train_data,family=binomial())
 summary(fit)
-?glm
+
 #run the anova() function on the model to analyze the table of deviance
 anova(fit, test="Chisq")
 #no exact equivalent to the R2 of linear regression exists, the McFadden R2 index can be used to assess the model fit.
